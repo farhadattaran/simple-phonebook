@@ -8,10 +8,10 @@ include "core/config.php";
 $id = $_GET['edit_id'];
 $empty = $success = $error = "";
 if (isset($_POST['edit'])) {
-    if ($_POST["name"]!="" and $_POST['last_name']!="" and $_POST['number']){
-        $name= $_POST['name'];
-        $last_name= $_POST['last_name'];
-        $number= $_POST['number'];
+    if (!empty($_POST["name"]) and !empty($_POST['last_name']) and !empty($_POST['number']) and strlen($_POST['number']) == 11){
+        $name = str_replace(' ', '', $_POST['name']);
+        $last_name = str_replace(' ', '', $_POST['last_name']);
+        $number = str_replace(' ', '', $_POST['number']);
 
         $sql = "UPDATE `users` SET `id`=:id,`name`=:name,`last_name`=:last_name,`number`=:number WHERE `id`=:id";
         $result = $connect->prepare($sql);
