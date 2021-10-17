@@ -6,9 +6,9 @@ include "core/config.php";
 $success = $error = "";
 if (isset($_POST['send'])) {
     if (!empty($_POST["name"]) and !empty($_POST['last_name']) and !empty($_POST['number']) and strlen($_POST['number']) == 11) {
-        $name= $_POST['name'];
-        $last_name= $_POST['last_name'];
-        $number= $_POST['number'];
+        $name = str_replace(' ', '', $_POST['name']);
+        $last_name = str_replace(' ', '', $_POST['last_name']);
+        $number = str_replace(' ', '', $_POST['number']);
 
         $sql = "INSERT INTO `users`(`name`,`last_name`,`number`) VALUES(:name,:last_name,:number)";
         $result = $connect->prepare($sql);
